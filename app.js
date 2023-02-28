@@ -1,13 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongose = require('mongose');
+const dotenv = require('dotenv');
+dotenv.config();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const { default: mongoose } = require('mongoose');
 
-var app = express();
+const app = express();
+
+//set up moongoose connection
+const mongoDB = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@clustermembersonly.kmqwfyu.mongodb.net/?retryWrites=true&w=majority`;
+mongoose.connect(mongoDB, {useUnifiedTopology: true, useNewUrlParser: true});
+const db = mongoose.connection;
+db.on("error", console.error.bind('mongo connection error'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
