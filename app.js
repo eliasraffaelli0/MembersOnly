@@ -3,13 +3,13 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongose = require('mongose');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const { default: mongoose } = require('mongoose');
+// const { default: mongoose } = require('mongoose');
 
 const app = express();
 
