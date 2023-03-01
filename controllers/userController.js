@@ -22,11 +22,11 @@ exports.sign_up_post = [
         .withMessage('Last name has non-alphanumeric characters'),
     body('email')
         .trim()
-        .isEmail(),
-        body('password')
-        .isLength({ min:5 }),
+        .isEmail()
+        .withMessage('Insert a valid email'),
     body('password')
-        .isLength({min:5}),
+        .isLength({min:5})
+        .withMessage('Password must be a least 5 characters long'),
     body('password_confirmation').custom((value, { req }) => {
         if (value !== req.body.password) {
             throw new Error('Password confirmation does not match password');
@@ -40,7 +40,7 @@ exports.sign_up_post = [
             res.render("sign_up_form", {
                 title: "Create author",
                 user: req.body,
-                errors: errors.array(),
+                errors: errors.mapped(),
             });
             return;
         }

@@ -20,27 +20,62 @@
     
                   <div class="form-outline mb-4">
                     <label class="form-label" for="first_name">First name</label>
-                    <input type="text" name="first_name" id="first_name" class="form-control" />
+                    <input type="text" name="first_name" id="first_name" class="form-control" value="<%= typeof user==="undefined"? '': user.first_name %>" />
+                    <% if(typeof errors!=="undefined"){ %>
+                      <% if(typeof errors.first_name!=="undefined"){ %>
+                        <div class="form-error-msg">
+                          <%= errors.first_name.msg %>
+                        </div>
+                      <% }%>
+                    <% }%>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="last_name">Last name</label>
-                    <input type="text" name="last_name" id="last_name" class="form-control" />
-                  </div>
-
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="username">email</label>
-                    <input type="text" name="email" id="email" class="form-control" />
+                    <input type="text" name="last_name" id="last_name" class="form-control" value="<%= typeof user==="undefined"? '': user.last_name %>" />
+                    <% if(typeof errors!=="undefined"){ %>
+                      <% if(typeof errors.last_name!=="undefined"){ %>
+                        <div class="form-error-msg">
+                          <%= errors.last_name.msg %>
+                        </div>
+                      <% }%>
+                    <% }%>
                   </div>
                   
                   <div class="form-outline mb-4">
+                    <label class="form-label" for="username">email</label>
+                    <input type="text" name="email" id="email" class="form-control" value="<%= typeof user==="undefined"? '': user.email %>" />
+                    <% if(typeof errors!=="undefined"){ %>
+                      <% if(typeof errors.email!=="undefined"){ %>
+                        <div class="form-error-msg">
+                          <%= errors.email.msg %>
+                        </div>
+                      <% }%>
+                    <% }%>
+                  </div>
+                    
+                  <div class="form-outline mb-4">
                     <label class="form-label" for="password">password</label>
                     <input type="password" name="password" id="password" class="form-control" />
+                    <% if(typeof errors!=="undefined"){ %>
+                      <% if(typeof errors.password!=="undefined"){ %>
+                        <div class="form-error-msg">
+                          <%= errors.password.msg %>
+                        </div>
+                      <% }%>
+                    <% }%>
                   </div>
                   
                   <div class="form-outline mb-4">
                     <label class="form-label" for="password_confirmation">Confirm password</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" />
+                    <% if(typeof errors!=="undefined"){ %>
+                      <% if(typeof errors.password_confirmation!=="undefined"){ %>
+                        <div class="form-error-msg">
+                          <%= errors.password_confirmation.msg %>
+                        </div>
+                      <% }%>
+                    <% }%>
                   </div>
 
                   <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>

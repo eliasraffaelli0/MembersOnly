@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.form-error-msg{
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
