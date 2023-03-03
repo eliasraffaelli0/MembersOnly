@@ -2,7 +2,7 @@ const User = require('../models/user');
 const {body, validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
 
-
+//sign up controllers
 exports.sign_up_get = (req, res, next) => {
     res.render("sign_up_form");
 };
@@ -82,3 +82,8 @@ exports.sign_up_post = [
 
     }
 ];
+
+//login controllers
+exports.login_get = (req, res, next) => {
+    res.render("login_form");
+};
