@@ -4,6 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user')
+const bcrypt = require('bcrypt');
+const flash = require('connect-flash');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -24,15 +30,54 @@ db.on("error", console.error.bind('mongo connection error'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//import routes
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+// app.use('/sign-up', signUpRouter);
+
+app.use(flash());
+app.use(session({secret: 'members', resave: false, saveUninitialized:true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-// app.use('/sign-up', signUpRouter);
+//passport login
+passport.use(
+  new LocalStrategy((username, password, done)=>{
+    User.findOne( {email: username }, (err,user)=>{
+      if(err){
+        return next(err);
+      };
+
+      if(!user){
+        return done(null, false, {message: 'incorrect username or password'});
+      };
+
+      bcrypt.compare(password, user.password,(err, result)=>{
+        if(result){
+          return done(null, user);
+        } else {
+          return done(null, false, {message: 'incorrect username or password'});
+        }
+      })
+    })
+  })
+);
+
+passport.serializeUser((user,done)=>{
+  done(null, user.id);
+});
+
+passport.deserializeUser((id,done)=>{
+  User.findById(id, (err, user)=>{
+    done(err,user);
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const {body, validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
 //sign up controllers
 exports.sign_up_get = (req, res, next) => {
@@ -86,4 +87,19 @@ exports.sign_up_post = [
 //login controllers
 exports.login_get = (req, res, next) => {
     res.render("login_form");
+};
+
+exports.login_post = passport.authenticate('local',  {
+    successRedirect: '/sign-up',
+    failureRedirect: '/login',
+    failureMessage: true
+});
+
+exports.logout_get = (req, res, next) => {
+    req.logout((err)=>{
+        if(err){
+            return next(err);
+        }
+        res.redirect('/');
+    });
 };
