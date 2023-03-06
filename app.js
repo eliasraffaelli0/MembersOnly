@@ -30,10 +30,6 @@ db.on("error", console.error.bind('mongo connection error'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//import routes
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-// app.use('/sign-up', signUpRouter);
 
 app.use(flash());
 app.use(session({secret: 'members', resave: false, saveUninitialized:true}));
@@ -45,6 +41,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//import routes
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+// app.use('/sign-up', signUpRouter);
 
 //passport login
 passport.use(
