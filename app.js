@@ -9,7 +9,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user')
 const bcrypt = require('bcrypt');
-const flash = require('connect-flash');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -31,7 +30,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-app.use(flash());
 app.use(session({secret: 'members', resave: false, saveUninitialized:true}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,14 +45,20 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // app.use('/sign-up', signUpRouter);
 
+const customFields = {
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true,
+};
+
 //passport login
 passport.use(
-  new LocalStrategy((username, password, done)=>{
+  new LocalStrategy(customFields, (req, username, password, done)=>{
     User.findOne( {email: username }, (err,user)=>{
       if(err){
-        return next(err);
+        return done(err);
       };
-
+      req.session.messages = [];
       if(!user){
         return done(null, false, {message: 'incorrect username or password'});
       };

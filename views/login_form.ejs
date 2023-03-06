@@ -18,29 +18,19 @@
                 <form class="px-md-2" method="POST" action="">
                   
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="username">email</label>
-                    <input type="text" name="username" id="username" class="form-control" value="<%= typeof user==="undefined"? '': user.email %>" />
-                    <% if(typeof errors!=="undefined"){ %>
-                      <% if(typeof errors.email!=="undefined"){ %>
-                        <div class="form-error-msg">
-                          <%= errors.email.msg %>
-                        </div>
-                      <% }%>
-                    <% }%>
+                    <label class="form-label" for="email">email</label>
+                    <input type="text" name="email" id="email" class="form-control" value="<%= typeof user==="undefined"? '': user.email %>" />
                   </div>
                     
                   <div class="form-outline mb-4">
                     <label class="form-label" for="password">password</label>
                     <input type="password" name="password" id="password" class="form-control" />
-                    <% if(typeof errors!=="undefined"){ %>
-                      <% if(typeof errors.password!=="undefined"){ %>
-                        <div class="form-error-msg">
-                          <%= errors.password.msg %>
-                        </div>
-                      <% }%>
-                    <% }%>
                   </div>
-                  
+                  <div class="form-error-msg">
+                    <% if(typeof messages!=="undefined") {%>
+                      <%= messages[0] %>
+                    <% } %>  
+                  </div>
                   <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
     
                 </form>

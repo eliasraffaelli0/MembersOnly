@@ -86,11 +86,12 @@ exports.sign_up_post = [
 
 //login controllers
 exports.login_get = (req, res, next) => {
-    res.render("login_form");
+
+    res.render("login_form", {messages: req.session.messages});
 };
 
 exports.login_post = passport.authenticate('local',  {
-    successRedirect: '/sign-up',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureMessage: true
 });
