@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #3993f3 !important;
 }
 
 a {
@@ -11,4 +12,12 @@ a {
   margin-top: .25rem;
   font-size: 80%;
   color: #dc3545;
+}
+
+.label{
+  font-weight: 600;
+}
+
+.form-question{
+  font-size: 0.9rem;
 }
