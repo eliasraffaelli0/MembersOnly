@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const indexRouter = require('./routes/index');
+const routesRouter = require('./routes/routes');
 const usersRouter = require('./routes/users');
 const signUpRouter = require('./routes/sign-up');
 // const { default: mongoose } = require('mongoose');
@@ -47,7 +47,7 @@ app.use((req,res,next)=>{
 });
 
 //import routes
-app.use('/', indexRouter);
+app.use('/', routesRouter);
 app.use('/users', usersRouter);
 // app.use('/sign-up', signUpRouter);
 
