@@ -3,12 +3,9 @@ var router = express.Router();
 const auth_controller = require('../controllers/authController');
 const message_controller = require('../controllers/messageController')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express'});
-});
+router.get('/', message_controller.messages_get);
 
-router.get('/create-message', message_controller.message_get);
+router.get('/create-message', message_controller.message_create_get);
 
 router.post('/create-message', message_controller.message_post);
 

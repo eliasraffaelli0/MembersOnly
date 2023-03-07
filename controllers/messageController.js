@@ -1,10 +1,14 @@
 const Message = require('../models/message');
 const { body, validationResult } = require('express-validator');
 
-exports.message_get = (req, res, next) => {
-    res.render('message_form', {
-        title: 'create message'
-    })
+exports.message_create_get = (req, res, next) => {
+    if(req.user){
+        res.render('message_form', {
+            title: 'create message'
+        });
+    } else {
+        res.redirect('login');
+    }
 }
 
 exports.message_post = [
@@ -43,4 +47,20 @@ exports.message_post = [
         })
 
     }
-]
+];
+
+exports.messages_get = (req, res, next) => {
+    Message.find({})
+        .sort({date:1})
+        .populate("author")
+        .exec((err, list_messages)=>{
+            if(err){
+                return next(err);
+            }
+
+            res.render("index", {
+                title: 'express',
+                messages: list_messages,
+            });
+        });
+}
