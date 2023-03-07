@@ -5,7 +5,11 @@ const passport = require('passport');
 
 //sign up controllers
 exports.sign_up_get = (req, res, next) => {
-    res.render("sign_up_form");
+    if(req.user){
+        res.redirect("/")
+    } else {
+        res.render("sign_up_form");
+    }
 };
 
 exports.sign_up_post = [
@@ -86,8 +90,11 @@ exports.sign_up_post = [
 
 //login controllers
 exports.login_get = (req, res, next) => {
-
-    res.render("login_form", {messages: req.session.messages});
+    if(req.user){
+        res.redirect("/")
+    } else {
+        res.render("login_form", {messages: req.session.messages});
+    }
 };
 
 exports.login_post = passport.authenticate('local',  {

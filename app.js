@@ -40,6 +40,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//save de current user in a locals object so i can use it anywhere in the views without having to pass the req.user to them
+app.use((req,res,next)=>{
+  res.locals.currentUser = req.user;
+  next();
+});
+
 //import routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
