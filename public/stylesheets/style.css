@@ -21,3 +21,15 @@ a {
 .form-question{
   font-size: 0.9rem;
 }
+
+.nav-item:hover{
+  background-color: #2c3137!important;
+}
+
+.navbar-brand:hover{
+  background-color: #2c3137!important;
+}
+
+.navbar{
+  width: 70%;
+}
