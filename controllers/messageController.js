@@ -64,3 +64,19 @@ exports.messages_get = (req, res, next) => {
             });
         });
 }
+
+exports.message_delete_post = (req,res,next)=>{
+    Message.findById(req.params.id)
+        .populate("author")
+        .exec((err,message)=>{
+            if(err){
+                return next(err);
+            }
+            Message.findByIdAndRemove(req.params.id, (err)=>{
+                if(err){
+                    return next(err);
+                }
+                res.redirect("/")
+            })
+        })
+}

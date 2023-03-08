@@ -9,6 +9,8 @@ router.get('/create-message', message_controller.message_create_get);
 
 router.post('/create-message', message_controller.message_post);
 
+router.post('/delete-message/:id', message_controller.message_delete_post);
+
 router.get('/sign-up', auth_controller.sign_up_get);
 
 router.post('/sign-up', auth_controller.sign_up_post);

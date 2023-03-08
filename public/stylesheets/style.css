@@ -33,3 +33,14 @@ a {
 .navbar{
   width: 70%;
 }
+
+.delete-button{
+  color: black;
+  background-color: rgb(220, 215, 215) !important;
+}
+
+.delete-button:hover{
+  color: white !important;
+  font-weight: 700 !important;
+  background-color: rgb(169, 57, 57) !important;
+}

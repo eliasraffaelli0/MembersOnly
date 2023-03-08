@@ -11,4 +11,8 @@ const MessageSchema = new Schema({
     author: {type: Schema.Types.ObjectId, ref: "User"}
 });
 
+MessageSchema.virtual("formatted_date").get(function(){
+    return DateTime.fromJSDate(this.timestamp).toFormat("HH:mm dd-MM-yyyy");
+})
+
 module.exports = moongose.model("Message", MessageSchema);
