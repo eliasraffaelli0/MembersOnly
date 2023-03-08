@@ -1,18 +1,22 @@
 <%- include('header'); -%>
-
-    <% if(currentUser) { %>
-      <p><%= currentUser.first_name %> kk</p>
-      <h1><%= title %></h1>
-      <p>Welcome to <%= title %>, <%= currentUser.first_name %></p>
-      <a href="/log-out">LOG OUT</a>
-    <% } else { %>
-      <a href="/login">LOG IN HERE!</a>
-    <% } %>
   
-  <%  Object.keys(messages).forEach(message => { %>
-    <p><%= messages[message].title %></p>
-    <p><%= messages[message].text %></p>
-    <p><%= messages[message].author.first_name %></p>
+
+<%  Object.keys(messages).forEach(message => { %>
+    <div class="card mx-auto col-xl-6 mt-5" >
+      <div class="card-body">
+        <p class="float-right">eliminar</p>
+        <h5 class="card-title mb-2"><%= messages[message].title %></h5>
+        <p class="card-text mb-2 text-muted"><%= messages[message].text %></p>
+        <hr>
+        <% if(currentUser) {%>
+          <p class="smaller-font"><%= messages[message].author.first_name %></p>
+        <% } else {%>
+          <p class="smaller-font text-muted">Inicia sesion para saber quien posteo este mensaje</p>
+        <% } %>
+      </div>
+    </div>
+
   <% }); %>
+
 
 <%- include('footer'); -%>

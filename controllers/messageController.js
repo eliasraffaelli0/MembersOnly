@@ -51,7 +51,7 @@ exports.message_post = [
 
 exports.messages_get = (req, res, next) => {
     Message.find({})
-        .sort({date:1})
+        .sort({timestamp:-1})
         .populate("author")
         .exec((err, list_messages)=>{
             if(err){
