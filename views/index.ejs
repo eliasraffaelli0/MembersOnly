@@ -1,30 +1,39 @@
 <%- include('header'); -%>
-  
+  <% if(!currentUser){ %>
+    <div class="card mx-auto col-xl-6 mt-5" >
+      <div class="card-body">
+        <h5 class="card-title mb-2">¡Bienvenidx!</h5>
+        <p class="card-text mb-2 text-muted">¡Para poder ver los autores de los mensajes y postear los tuyos registrate e inicia sesion! :)</p>
+        <hr>
+          <p class="smaller-font">Elias Administrador</p>
+      </div>
+    </div>
+  <% } %>
 
-<%  Object.keys(messages).forEach(message => { %>
+  <%  Object.keys(messages).forEach(message => { %>
     <div class="card mx-auto col-xl-6 mt-5" >
       <div class="card-body">
         <% if(currentUser){ %>
           <!-- if the logged user has the same email as the author of the message then it has the option to eliminate his own message -->
-          <% if(currentUser.email===messages[message].author.email){ %>
+          <% if(currentUser.email===messages[message].author.email || currentUser.admin){ %>
             <form action="/delete-message/<%= messages[message]._id %>" method="POST">
               <div class="form-group">
-                  <input id="messageif" type="hidden" name="messageid" value="<%= messages[message]._id %> ">
-                  <button class="btn float-right delete-button nav-link rounded mb-0" type="submit">Borrar</button>
+                <input id="messageif" type="hidden" name="messageid" value="<%= messages[message]._id %> ">
+                <button class="btn float-right delete-button nav-link rounded mb-0" type="submit">Borrar</button>
               </div>
-          </form>
-            <!-- <a href="/delete-message" class="float-right delete-button nav-link rounded mb-0">Borrar</a> -->
+            </form>
+              <!-- <a href="/delete-message" class="float-right delete-button nav-link rounded mb-0">Borrar</a> -->
+            <% } %>
           <% } %>
-        <% } %>
-        <h5 class="card-title mb-2"><%= messages[message].title %></h5>
-        <p class="card-text mb-2 text-muted"><%= messages[message].text %></p>
-        <hr>
-        <% if(currentUser) {%>
-          <p class="smaller-font float-right"><%= messages[message].formatted_date %></p>
-          <p class="smaller-font"><%= messages[message].author.full_name %></p>
-        <% } else {%>
-          <p class="smaller-font text-muted">Inicia sesion para saber quien posteo este mensaje</p>
-        <% } %>
+          <h5 class="card-title mb-2"><%= messages[message].title %></h5>
+          <p class="card-text mb-2 text-muted"><%= messages[message].text %></p>
+          <hr>
+          <% if(currentUser) {%>
+            <p class="smaller-font float-right"><%= messages[message].formatted_date %></p>
+            <p class="smaller-font"><%= messages[message].author.full_name %></p>
+          <% } else {%>
+            <p class="smaller-font text-muted">Inicia sesion para saber quien posteo este mensaje</p>
+          <% } %>
       </div>
     </div>
 
