@@ -66,14 +66,14 @@ passport.use(
       };
       req.session.messages = [];
       if(!user){
-        return done(null, false, {message: 'incorrect username or password'});
+        return done(null, false, {message: 'Mail o contraseña incorrectos'});
       };
 
       bcrypt.compare(password, user.password,(err, result)=>{
         if(result){
           return done(null, user);
         } else {
-          return done(null, false, {message: 'incorrect username or password'});
+          return done(null, false, {message: 'Mail o contraseña incorrectos'});
         }
       })
     })

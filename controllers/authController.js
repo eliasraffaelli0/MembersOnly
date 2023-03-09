@@ -18,25 +18,25 @@ exports.sign_up_post = [
         .trim()
         .isLength({ min:2})
         .escape()
-        .withMessage('First name is required')
+        .withMessage('El nombre es obligatorio')
         .isAlphanumeric()
-        .withMessage('First name has non-alphanumeric characters'),
+        .withMessage('El nombre tiene caracteres no alphanumericos'),
     body('last_name')
         .trim()
         .isLength({ min:2})
         .escape()
-        .withMessage('Last name is required')
+        .withMessage('El apellido es obligatorio')
         .isAlphanumeric()
-        .withMessage('Last name has non-alphanumeric characters'),
+        .withMessage('El apellido tien caracteres no alphanumericos'),
     body('email')
         .trim()
         .isEmail()
-        .withMessage('Insert a valid email')
+        .withMessage('Ingrese un mail valido')
         //check if the email is already in the database
         .custom((value)=>{
             return User.findOne({email:value}).then(user => {
                 if (user) {
-                    return Promise.reject('Email already registered');
+                    return Promise.reject('El mail ya se encuentra registrado');
                 }
             });
             // User.findOne({email:value}, (err,user)=>{
@@ -50,10 +50,10 @@ exports.sign_up_post = [
         }),
     body('password')
         .isLength({min:5})
-        .withMessage('Password must be a least 5 characters long'),
+        .withMessage('La contraseña debe tener al menos 5 caracteres'),
     body('password_confirmation').custom((value, { req }) => {
         if (value !== req.body.password) {
-            throw new Error('Password confirmation does not match password');
+            throw new Error('Las contraseñas no coinciden');
         }
         return true;
     }),
