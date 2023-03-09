@@ -9,13 +9,14 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user')
 const bcrypt = require('bcrypt');
+const compression = require("compression");
+const helmet = require("helmet");
 const dotenv = require('dotenv');
 dotenv.config();
 
 const routesRouter = require('./routes/routes');
 const usersRouter = require('./routes/users');
 const signUpRouter = require('./routes/sign-up');
-// const { default: mongoose } = require('mongoose');
 
 const app = express();
 
@@ -34,6 +35,8 @@ app.use(session({secret: 'members', resave: false, saveUninitialized:true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(helmet());
+app.use(compression()); //compress all routes
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
