@@ -44,3 +44,11 @@ a {
   font-weight: 700 !important;
   background-color: rgb(169, 57, 57) !important;
 }
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid black;
+}

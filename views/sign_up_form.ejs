@@ -11,7 +11,7 @@
     
                   <div class="form-outline mb-4">
                     <label class="form-label label" for="first_name">Nombre</label>
-                    <input type="text" name="first_name" id="first_name" class="form-control" value="<%= typeof user==="undefined"? '': user.first_name %>" />
+                    <input type="text" name="first_name" id="first_name" class="form-control" value="<%= typeof user==="undefined"? '': user.first_name %>" required minlength="2"/>
                     <% if(typeof errors!=="undefined"){ %>
                       <% if(typeof errors.first_name!=="undefined"){ %>
                         <div class="form-error-msg">
@@ -23,7 +23,7 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label label" for="last_name">Apellido</label>
-                    <input type="text" name="last_name" id="last_name" class="form-control" value="<%= typeof user==="undefined"? '': user.last_name %>" />
+                    <input type="text" name="last_name" id="last_name" class="form-control" value="<%= typeof user==="undefined"? '': user.last_name %>" required minlength="2" />
                     <% if(typeof errors!=="undefined"){ %>
                       <% if(typeof errors.last_name!=="undefined"){ %>
                         <div class="form-error-msg">
@@ -35,7 +35,7 @@
                   
                   <div class="form-outline mb-4">
                     <label class="form-label label" for="username">Email</label>
-                    <input type="text" name="email" id="email" class="form-control" value="<%= typeof user==="undefined"? '': user.email %>" />
+                    <input type="email" name="email" id="email" class="form-control" value="<%= typeof user==="undefined"? '': user.email %>" required/>
                     <% if(typeof errors!=="undefined"){ %>
                       <% if(typeof errors.email!=="undefined"){ %>
                         <div class="form-error-msg">
@@ -47,7 +47,7 @@
                     
                   <div class="form-outline mb-4">
                     <label class="form-label label" for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" />
+                    <input type="password" name="password" id="password" class="form-control" required minlength="5" />
                     <% if(typeof errors!=="undefined"){ %>
                       <% if(typeof errors.password!=="undefined"){ %>
                         <div class="form-error-msg">
@@ -59,7 +59,7 @@
                   
                   <div class="form-outline mb-4">
                     <label class="form-label label" for="password_confirmation">Confirmar contraseña</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" />
+                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required minlength="5" />
                     <% if(typeof errors!=="undefined"){ %>
                       <% if(typeof errors.password_confirmation!=="undefined"){ %>
                         <div class="form-error-msg">

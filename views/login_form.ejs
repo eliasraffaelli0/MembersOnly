@@ -11,12 +11,12 @@
                   
                   <div class="form-outline mb-4">
                     <label class="label" for="email">Email</label>
-                    <input type="text" name="email" id="email" class="form-control" value="<%= typeof user==="undefined"? '': user.email %>" />
+                    <input type="email" name="email" id="email" class="form-control" value="<%= typeof user==="undefined"? '': user.email %>" required />
                   </div>
                     
                   <div class="form-outline mb-4">
                     <label class="label" for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" />
+                    <input type="password" name="password" id="password" class="form-control" required minlength="5" />
                   </div>
                   <div class="form-error-msg">
                     <% if(typeof messages!=="undefined") {%>

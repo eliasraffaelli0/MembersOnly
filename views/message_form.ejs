@@ -10,7 +10,7 @@
                   
                   <div class="form-outline mb-4">
                     <label class="form-label label" for="title">Titulo</label>
-                    <input type="text" name="title" id="email" class="form-control" value="<%= typeof message==="undefined"? '': message.title %>" />
+                    <input type="text" name="title" id="email" class="form-control" value="<%= typeof message==="undefined"? '': message.title %>" required minlength="2"/>
                     <% if(typeof errors!=="undefined"){ %>
                       <% if(typeof errors.title!=="undefined"){ %>
                         <div class="form-error-msg">
@@ -22,7 +22,7 @@
                   
                   <div class="form-outline mb-4">
                     <label class="form-label label" for="text">Texto</label>
-                    <input type="text" name="text" id="text" class="form-control" value="<%= typeof message==="undefined"? '': message.text %>"/>
+                    <input type="text" name="text" id="text" class="form-control" value="<%= typeof message==="undefined"? '': message.text %>" required minlength="2" />
                     <% if(typeof errors!=="undefined"){ %>
                       <% if(typeof errors.text!=="undefined"){ %>
                         <div class="form-error-msg">

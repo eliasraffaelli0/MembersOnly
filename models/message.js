@@ -7,7 +7,7 @@ const Schema = moongose.Schema;
 const MessageSchema = new Schema({
     title: {type: String},
     text: {type: String},
-    timestamp: {type: Date, default: Date.now},
+    timestamp: {type: Date, default: DateTime.now().minus({hours:3})},
     author: {type: Schema.Types.ObjectId, ref: "User"}
 });
 
