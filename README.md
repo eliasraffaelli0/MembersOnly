@@ -6,7 +6,7 @@
 
   <h2 align="center">Solo Miembros</h2>
 
-  <p align="center"><a href="https://solo-miembros.up.railway.app/">Link para vistiar la aplicación</a> 👈</p>
+  <p align="center"><a href="https://solo-miembros.onrender.com/">Link para vistiar la aplicación</a> 👈</p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -58,7 +58,6 @@ Para correr la aplicación localmente vas a tener que tener tu propia base de da
   ```
   
 ### Instalación
-Recomendable utilizar un entorno virtual. 
 * Instalar las dependencias:
   ```sh
   npm install
@@ -71,4 +70,20 @@ Recomendable utilizar un entorno virtual.
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
 ## Qué aprendí
-Con este pequeño proyecto pude aprender a autenticar usuarios en node utilizando passport. Utilizé la estrategia passport-local para que un usuario pueda logearse de forma segura. También aprendí a deployear una app a railway.
+Con este pequeño proyecto pude aprender a autenticar usuarios en node utilizando passport. Utilizé la estrategia passport-local para que un usuario pueda logearse de forma segura. También aprendí a deployear una app a render.
+
+  <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
+
+## Ejemplos
+Algunas capturas de ejemplo para ver cómo es la App
+* Home page sin logearse
+  <div align="center">
+    <img src="public/images/sm-home.png" alt="Logo" >
+  </div>
+* Registro de usuario nuevo
+  <div align="center">
+    <img src="public/images/sm-register.png" alt="Logo" >
+  </div>
+
+
+  <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
